@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="spots_dialog_color">@android:color/holo_blue_dark</color>
-    <color name="gray_background_color">#C2C2C2</color>
+    <color name="gray_background_color">#DCDCDC</color>
+    <color name="login_bg">#119780</color>
+    <color name="student_name_bg">#076F8A</color>
 </resources>

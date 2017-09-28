@@ -3,6 +3,7 @@ package com.yyw.eas.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -89,6 +90,8 @@ public class UserLoginActivity extends Activity implements IUserLoginView {
     public void onLoginSuccess() {
         // TODO 开始查询用户详细数据,查询成功之后进入进入主界面
         loadDialog.cancel();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
 

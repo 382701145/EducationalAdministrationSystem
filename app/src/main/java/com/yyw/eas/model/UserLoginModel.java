@@ -57,11 +57,12 @@ public class UserLoginModel implements IUserLoginModel {
                         SPUtils.setPrefParams(context, Constant.User.USERNAME, user.getUsername());
                         SPUtils.setPrefParams(context, Constant.User.PASSWORD, user.getPassword());
                         String studentName = HttpLoginUtils.getStudentName(cookiesMap);
-                        if (studentName != null && !studentName.equals("")) {
-                            SPUtils.setPrefParams(context, Constant.StudentName.STUDENT_NAME, studentName);
+                        if (studentName == null || studentName.equals("")) {
+                            studentName = context.getResources().getString(R.string.student) + ",你好!";
                         } else {
-                            SPUtils.setPrefParams(context, Constant.StudentName.STUDENT_NAME, context.getResources().getString(R.string.student));
+                            studentName = studentName + ",你好!";
                         }
+                        SPUtils.setPrefParams(context, Constant.StudentName.STUDENT_NAME, studentName);
                         callback.onSuccess();
                     } else {
                         callback.onLoadComplete();
