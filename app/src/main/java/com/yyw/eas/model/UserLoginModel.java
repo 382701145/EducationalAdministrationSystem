@@ -10,7 +10,7 @@ import com.yyw.eas.bean.User;
 import com.yyw.eas.callback.OnLoadCallback;
 import com.yyw.eas.utils.Constant;
 import com.yyw.eas.utils.FileUtils;
-import com.yyw.eas.utils.HttpLoginUtils;
+import com.yyw.eas.utils.HttpUtils;
 import com.yyw.eas.utils.SPUtils;
 
 import org.jsoup.Connection.Response;
@@ -31,7 +31,7 @@ public class UserLoginModel implements IUserLoginModel {
             @Override
             public void run() {
 
-                Response response = HttpLoginUtils.getLoginResponse(user);
+                Response response = HttpUtils.getLoginResponse(user);
                 // 开始解析响应
                 if (response != null) {
                     String body = response.body();
@@ -56,7 +56,7 @@ public class UserLoginModel implements IUserLoginModel {
                         FileUtils.putStringTFile(context, Constant.Response.COOKIES_FILE_NAME, cookiesJson);
                         SPUtils.setPrefParams(context, Constant.User.USERNAME, user.getUsername());
                         SPUtils.setPrefParams(context, Constant.User.PASSWORD, user.getPassword());
-                        String studentName = HttpLoginUtils.getStudentName(cookiesMap);
+                        String studentName = HttpUtils.getStudentName(cookiesMap);
                         if (studentName == null || studentName.equals("")) {
                             studentName = context.getResources().getString(R.string.student) + ",你好!";
                         } else {

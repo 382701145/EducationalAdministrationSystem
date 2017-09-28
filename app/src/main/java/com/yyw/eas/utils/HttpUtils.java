@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class HttpLoginUtils {
+public class HttpUtils {
 
     /**
      * 登录接口获取响应
@@ -25,8 +25,8 @@ public class HttpLoginUtils {
     public static Response getLoginResponse(User user) {
 
         Map<String, String> map = new HashMap<>();
-        map.put(Constant.Login.LOGIN_PARAM_USERNAME, user.getUsername());
-        map.put(Constant.Login.LOGIN_PARAM_PASSWORD, user.getPassword());
+        map.put(Constant.Login.PARAM_USERNAME, user.getUsername());
+        map.put(Constant.Login.PARAM_PASSWORD, user.getPassword());
         try {
 
             return Jsoup.connect(Constant.Login.LOGIN_URL)
@@ -63,6 +63,37 @@ public class HttpLoginUtils {
             Element body = document.body();
             Elements elementsByClass = body.getElementsByClass("username");
             return elementsByClass.get(0).text();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 获取学校通知接口
+     * @param cookiesMap
+     * @param index
+     * @return
+     */
+    public static Response getSchoolNotice(Map<String, String> cookiesMap, int index) {
+
+        try {
+            Connection con = Jsoup.connect(Constant.SchoolNotice.URL);
+            con.ignoreContentType(true);
+            Iterator<Map.Entry<String, String>> it = cookiesMap.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<String, String> en = it.next();
+                con = con.cookie(en.getKey(), en.getValue());
+            }
+
+            return con.method(Connection.Method.POST)
+                    .data(Constant.SchoolNotice.PARAM_PAGE_SIZE, "10")
+                    .data(Constant.SchoolNotice.PARAM_PAGE_INDEX, String.valueOf(index))
+                    .data(Constant.SchoolNotice.PARAM_A_TITLE, "")
+                    .data(Constant.SchoolNotice.PARAM_ORDER_BY_TYPE, "asc")
+                    .timeout(10000)
+                    .execute();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

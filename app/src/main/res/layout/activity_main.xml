@@ -34,18 +34,19 @@
             android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/ib_teacher_praise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/gray_background_color"
-                android:src="@mipmap/ic_app_exam" />
+                android:src="@mipmap/ic_app_teacher_praise" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:text="老师点赞" />
+                android:text="@string/teacher_point_of_praise" />
 
         </LinearLayout>
 
@@ -56,18 +57,19 @@
             android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/ib_course_praise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/gray_background_color"
-                android:src="@mipmap/ic_app_library" />
+                android:src="@mipmap/ic_app_course_praise" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:text="课程点赞" />
+                android:text="@string/course_point_of_praise" />
 
         </LinearLayout>
 
@@ -78,18 +80,19 @@
             android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/ib_school_notice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/gray_background_color"
-                android:src="@mipmap/ic_app_scc_news" />
+                android:src="@mipmap/ic_app_school_notice" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal"
-                android:text="学校通知" />
+                android:text="@string/school_notice" />
 
         </LinearLayout>
 

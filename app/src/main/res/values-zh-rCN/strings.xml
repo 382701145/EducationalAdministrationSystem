@@ -9,4 +9,7 @@
     <string name="invalid_username">账号不存在！</string>
     <string name="invalid_password">密码输入错误！</string>
     <string name="student">同学</string>
+    <string name="course_point_of_praise">课程点赞</string>
+    <string name="teacher_point_of_praise">老师点赞</string>
+    <string name="school_notice">学校通知</string>
 </resources>

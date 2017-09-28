@@ -7,6 +7,14 @@ public interface Constant {
         public static String SP_FILE_NAME = "eas";
     }
 
+    class SchoolNotice{
+        static String URL = "http://glxt.juti.cn/new/Basic/Default/GetArticleList";
+        static String PARAM_PAGE_INDEX = "_PageIndex";
+        static String PARAM_PAGE_SIZE = "_PageSize";
+        static String PARAM_ORDER_BY_TYPE = "_OrderByType";
+        static String PARAM_A_TITLE = "A_Title";
+    }
+
     class StudentName {
         static String URL = "http://glxt.juti.cn/new/Basic/Default";
         public static String STUDENT_NAME = "student_name";
@@ -20,8 +28,8 @@ public interface Constant {
 
     class Login {
         static String LOGIN_URL = "http://glxt.juti.cn/new/Basic/Login";
-        static String LOGIN_PARAM_USERNAME = "U_Account";
-        static String LOGIN_PARAM_PASSWORD = "U_Password";
+        static String PARAM_USERNAME = "U_Account";
+        static String PARAM_PASSWORD = "U_Password";
         public static int SUCCESS = 0;
         public static int INVALID_USERNAME = 1;
         public static int INVALID_PASSWORD = 2;

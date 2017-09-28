@@ -9,4 +9,7 @@
     <string name="invalid_username">username is not exist！</string>
     <string name="invalid_password">password is error！</string>
     <string name="student">student</string>
+    <string name="course_point_of_praise">Course Praise</string>
+    <string name="teacher_point_of_praise">Teacher Praise</string>
+    <string name="school_notice">School Notice</string>
 </resources>
