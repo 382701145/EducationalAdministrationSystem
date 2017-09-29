@@ -25,38 +25,40 @@ public class UserLoginPresenter implements IUserLoginPresenter {
 
         if (!NetworkUtils.isAvailable(loginView.getContext())) {
             loginView.onLoginFailed(Constant.Network.Network_ERROR);
-            return;
-        }
-        User user = new User();
-        user.setUsername(loginView.getUserName());
-        user.setPassword(loginView.getPassword());
-
-        if (!user.getUsername().equals("") && !user.getPassword().equals("")) {
-
-            userLoginModel.login(loginView.getContext(),user, new OnLoadCallback() {
-
-                @Override
-                public void beforeLoad() {
-                    loginView.showLoading();
-                }
-
-                @Override
-                public void onLoadComplete() {
-                    loginView.hideLoading();
-                }
-
-                @Override
-                public void onSuccess() {
-                    loginView.onLoginSuccess();
-                }
-
-                @Override
-                public void onFailed(int failedMessage) {
-                    loginView.onLoginFailed(failedMessage);
-                }
-            });
         } else {
-            loginView.onLoginFailed(Constant.Login.EMPTY_USERNAME_OR_EMPTY_PASSWORD);
+
+            User user = new User();
+            user.setUsername(loginView.getUserName());
+            user.setPassword(loginView.getPassword());
+
+            if (!user.getUsername().equals("") && !user.getPassword().equals("")) {
+
+                userLoginModel.login(loginView.getContext(), user, new OnLoadCallback() {
+
+                    @Override
+                    public void beforeLoad() {
+                        loginView.showLoading();
+                    }
+
+                    @Override
+                    public void onLoadComplete() {
+                        loginView.hideLoading();
+                    }
+
+                    @Override
+                    public void onSuccess() {
+                        loginView.onLoginSuccess();
+                    }
+
+                    @Override
+                    public void onFailed(int failedMessage) {
+                        loginView.onLoginFailed(failedMessage);
+                    }
+                });
+            } else {
+                loginView.onLoginFailed(Constant.Login.EMPTY_USERNAME_OR_EMPTY_PASSWORD);
+            }
+
         }
     }
 }

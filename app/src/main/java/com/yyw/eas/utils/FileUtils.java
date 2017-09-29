@@ -17,7 +17,7 @@ public class FileUtils {
      * @param data
      * @return
      */
-    public static boolean putStringTFile(Context context, String name, String data) {
+    public static boolean putStringToFile(Context context, String name, String data) {
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = context.openFileOutput(name, Context.MODE_PRIVATE);

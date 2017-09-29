@@ -53,19 +53,18 @@ public class UserLoginModel implements IUserLoginModel {
                         cookies.setData(String.valueOf(System.currentTimeMillis()));
                         String cookiesJson = gson.toJson(cookies);
                         // 保存到本地
-                        FileUtils.putStringTFile(context, Constant.Response.COOKIES_FILE_NAME, cookiesJson);
+                        FileUtils.putStringToFile(context, Constant.Response.COOKIES_FILE_NAME, cookiesJson);
                         SPUtils.setPrefParams(context, Constant.User.USERNAME, user.getUsername());
                         SPUtils.setPrefParams(context, Constant.User.PASSWORD, user.getPassword());
                         String studentName = HttpUtils.getStudentName(cookiesMap);
                         if (studentName == null || studentName.equals("")) {
-                            studentName = context.getResources().getString(R.string.student) + ",你好!";
+                            studentName = context.getResources().getString(R.string.hello) + context.getResources().getString(R.string.student);
                         } else {
-                            studentName = studentName + ",你好!";
+                            studentName = context.getResources().getString(R.string.hello) + studentName;
                         }
                         SPUtils.setPrefParams(context, Constant.StudentName.STUDENT_NAME, studentName);
                         callback.onSuccess();
                     } else {
-                        callback.onLoadComplete();
                         if (loginResponse.getMessage().equals(context.getString(R.string.invalid_username))) {
                             callback.onFailed(Constant.Login.INVALID_USERNAME);
                         } else if (loginResponse.getMessage().equals(context.getString(R.string.invalid_password))) {
@@ -73,9 +72,9 @@ public class UserLoginModel implements IUserLoginModel {
                         }
                     }
                 } else {// 网络问题
-                    callback.onLoadComplete();
                     callback.onFailed(Constant.Network.Network_ERROR);
                 }
+                callback.onLoadComplete();
             }
         }).start();
     }

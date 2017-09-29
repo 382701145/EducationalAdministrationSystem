@@ -104,7 +104,7 @@ public class UserLoginActivity extends Activity implements IUserLoginView {
             message = getString(R.string.invalid_password);
         } else if (failedMessage == Constant.Login.INVALID_USERNAME) {
             message = getString(R.string.invalid_username);
-        } else if (failedMessage == Constant.Login.ERROR) {
+        } else if (failedMessage == Constant.Connect.ERROR) {
             //TODO 登录过程中出错
             message = getString(R.string.unable_to_connect_to_network_please_check_settings);
         } else if (failedMessage == Constant.Network.Network_ERROR) {

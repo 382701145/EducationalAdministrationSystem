@@ -26,14 +26,17 @@ public interface Constant {
         public static String PASSWORD = "password";
     }
 
+    class Connect{
+        public static int SUCCESS = 0;
+        public static int ERROR = 3;
+    }
+
     class Login {
         static String LOGIN_URL = "http://glxt.juti.cn/new/Basic/Login";
         static String PARAM_USERNAME = "U_Account";
         static String PARAM_PASSWORD = "U_Password";
-        public static int SUCCESS = 0;
         public static int INVALID_USERNAME = 1;
         public static int INVALID_PASSWORD = 2;
-        public static int ERROR = 3;
         public static int EMPTY_USERNAME_OR_EMPTY_PASSWORD = 4;
     }
 

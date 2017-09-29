@@ -12,4 +12,6 @@
     <string name="course_point_of_praise">课程点赞</string>
     <string name="teacher_point_of_praise">老师点赞</string>
     <string name="school_notice">学校通知</string>
+    <string name="hello">你好!</string>
+    <string name="login_educational_administration_system">登录教务管理系统</string>
 </resources>

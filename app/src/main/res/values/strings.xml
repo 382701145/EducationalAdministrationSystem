@@ -12,4 +12,7 @@
     <string name="course_point_of_praise">Course Praise</string>
     <string name="teacher_point_of_praise">Teacher Praise</string>
     <string name="school_notice">School Notice</string>
+    <string name="hello">Hello!</string>
+    <string name="login_educational_administration_system">登录教务管理系统</string>
+
 </resources>
