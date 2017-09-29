@@ -3,7 +3,7 @@ package com.yyw.eas.callback;
 public interface OnLoadCallback {
 
     void beforeLoad();
-    void onSuccess();
+    <T> void onSuccess(T t);
     void onFailed(int failedMessage);
     void onLoadComplete();
 }

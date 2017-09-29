@@ -11,8 +11,8 @@ import com.yyw.eas.view.IUserLoginView;
 
 public class UserLoginPresenter implements IUserLoginPresenter {
 
-    public IUserLoginView loginView;
-    public IUserLoginModel userLoginModel;
+    private IUserLoginView loginView;
+    private IUserLoginModel userLoginModel;
 
     public UserLoginPresenter(IUserLoginView loginView) {
 
@@ -46,7 +46,7 @@ public class UserLoginPresenter implements IUserLoginPresenter {
                     }
 
                     @Override
-                    public void onSuccess() {
+                    public <T> void onSuccess(T t) {
                         loginView.onLoginSuccess();
                     }
 

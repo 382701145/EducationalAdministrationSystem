@@ -25,21 +25,6 @@ public class UserLoginActivity extends Activity implements IUserLoginView {
     private EditText password;
     private IUserLoginPresenter userLoginPresenter;
     private AlertDialog loadDialog;
-    private final static int FAILED_MESSAGE = 1;
-    private Handler handler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            switch (msg.what) {
-                case FAILED_MESSAGE:
-                    String message = (String) msg.obj;
-                    CustomToast.showToast(UserLoginActivity.this, message);
-                    break;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +41,7 @@ public class UserLoginActivity extends Activity implements IUserLoginView {
         String spUsername = (String) SPUtils.getPrefParams(this, Constant.User.USERNAME, "");
         String spPassword = (String) SPUtils.getPrefParams(this, Constant.User.PASSWORD, "");
 
-        if (!spUsername.equals("") && !spPassword.equals("")) {
+        if (!"".equals(spUsername) && !"".equals(spPassword)) {
             username.setText(spUsername);
             password.setText(spPassword);
         }
@@ -89,7 +74,9 @@ public class UserLoginActivity extends Activity implements IUserLoginView {
     @Override
     public void onLoginSuccess() {
         // TODO 开始查询用户详细数据,查询成功之后进入进入主界面
-        loadDialog.cancel();
+        if(loadDialog.isShowing()){
+            loadDialog.cancel();
+        }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -110,11 +97,7 @@ public class UserLoginActivity extends Activity implements IUserLoginView {
         } else if (failedMessage == Constant.Network.Network_ERROR) {
             message = getString(R.string.unable_to_connect_to_network_please_check_settings);
         }
-
-        Message msg = Message.obtain();
-        msg.what = FAILED_MESSAGE;
-        msg.obj = message;
-        handler.sendMessage(msg);
+        CustomToast.showToast(UserLoginActivity.this, message);
     }
 
     @Override

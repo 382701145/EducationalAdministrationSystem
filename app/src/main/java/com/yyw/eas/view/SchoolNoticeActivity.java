@@ -4,18 +4,22 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.yyw.eas.R;
+import com.yyw.eas.bean.Article;
 import com.yyw.eas.presenter.ISchoolNoticePresenter;
 import com.yyw.eas.presenter.SchoolNoticePresenter;
 
-public class SchoolNoticeActivity extends Activity implements ISchoolNoticeView{
+public class SchoolNoticeActivity extends Activity implements ISchoolNoticeView {
 
     private ISchoolNoticePresenter schoolNoticePresenter;
+    private int defaultIndex = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_school_notice);
         schoolNoticePresenter = new SchoolNoticePresenter(this);
-        schoolNoticePresenter.getSchoolNotice(1);
+        schoolNoticePresenter.getSchoolNotice(defaultIndex);
     }
 
     @Override
@@ -29,7 +33,9 @@ public class SchoolNoticeActivity extends Activity implements ISchoolNoticeView{
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(Article article) {
+
+
 
     }
 
