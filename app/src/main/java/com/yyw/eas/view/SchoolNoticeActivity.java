@@ -8,6 +8,7 @@ import com.yyw.eas.R;
 import com.yyw.eas.bean.Article;
 import com.yyw.eas.presenter.ISchoolNoticePresenter;
 import com.yyw.eas.presenter.SchoolNoticePresenter;
+import com.yyw.eas.utils.LogUtils;
 
 public class SchoolNoticeActivity extends Activity implements ISchoolNoticeView {
 
@@ -35,7 +36,7 @@ public class SchoolNoticeActivity extends Activity implements ISchoolNoticeView 
     @Override
     public void onLoginSuccess(Article article) {
 
-
+        LogUtils.d("-----"+article.getRowsList().size());
 
     }
 

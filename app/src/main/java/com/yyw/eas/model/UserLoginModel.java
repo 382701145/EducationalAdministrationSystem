@@ -23,25 +23,25 @@ import java.util.Map;
 
 public class UserLoginModel implements IUserLoginModel {
 
+    private Context context;
+    private OnLoadCallback callback;
+
     @Override
     public void login(final Context context, final User user, final OnLoadCallback callback) {
-        LoginAsyncTask loginAsyncTask = new LoginAsyncTask(context, user, callback);
+        this.context = context;
+        this.callback = callback;
+        LoginAsyncTask loginAsyncTask = new LoginAsyncTask(user);
         loginAsyncTask.execute();
     }
 
 
     private class LoginAsyncTask extends AsyncTask<Void, Void, Response> {
 
-        private Context context;
-        private OnLoadCallback callback;
         private User user;
 
-        public LoginAsyncTask(Context context, User user, OnLoadCallback callback) {
-            this.context = context;
+        LoginAsyncTask(User user) {
             this.user = user;
-            this.callback = callback;
         }
-
 
         @Override
         protected void onPostExecute(Response response) {
@@ -70,14 +70,9 @@ public class UserLoginModel implements IUserLoginModel {
                     FileUtils.putStringToFile(context, Constant.Response.COOKIES_FILE_NAME, cookiesJson);
                     SPUtils.setPrefParams(context, Constant.User.USERNAME, user.getUsername());
                     SPUtils.setPrefParams(context, Constant.User.PASSWORD, user.getPassword());
-                    String studentName = HttpUtils.getStudentName(cookiesMap);
-                    if (studentName == null || studentName.equals("")) {
-                        studentName = context.getResources().getString(R.string.hello) + context.getResources().getString(R.string.student);
-                    } else {
-                        studentName = context.getResources().getString(R.string.hello) + studentName;
-                    }
-                    SPUtils.setPrefParams(context, Constant.StudentName.STUDENT_NAME, studentName);
-                    callback.onSuccess(null);
+
+                    StudentNameAsyncTask studentNameAsyncTask = new StudentNameAsyncTask();
+                    studentNameAsyncTask.execute(cookiesMap);
                 } else {
                     if (loginResponse.getMessage().equals(context.getString(R.string.invalid_username))) {
                         callback.onFailed(Constant.Login.INVALID_USERNAME);
@@ -100,6 +95,28 @@ public class UserLoginModel implements IUserLoginModel {
         @Override
         protected Response doInBackground(Void... voids) {
             return HttpUtils.getLoginResponse(user);
+        }
+    }
+
+
+    private class StudentNameAsyncTask extends AsyncTask<Map<String, String>, Void, String> {
+
+        @Override
+        protected void onPostExecute(String studentName) {
+            super.onPostExecute(studentName);
+            if (studentName == null || studentName.equals("")) {
+                studentName = context.getResources().getString(R.string.hello) + context.getResources().getString(R.string.student);
+            } else {
+                studentName = context.getResources().getString(R.string.hello) + studentName;
+            }
+            SPUtils.setPrefParams(context, Constant.StudentName.STUDENT_NAME, studentName);
+            callback.onSuccess(null);
+        }
+
+        @Override
+        protected String doInBackground(Map<String, String>... params) {
+            Map<String, String> cookiesMap = params[0];
+            return HttpUtils.getStudentName(cookiesMap);
         }
     }
 }

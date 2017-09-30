@@ -14,9 +14,10 @@ import com.yyw.eas.utils.FileUtils;
 import com.yyw.eas.utils.HttpUtils;
 import com.yyw.eas.utils.LogUtils;
 
-import org.jsoup.Connection;
 import org.jsoup.Connection.Response;
 
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +50,7 @@ public class SchoolNoticeModel implements ISchoolNoticeModel {
                 String body = response.body();
                 if (!body.contains(context.getResources().getString(R.string.login_educational_administration_system))) {
                     // TODO 获取成功,保存到本地
+                    LogUtils.d(body);
                     Article article = gson.fromJson(body, Article.class);
                     onLoadCallback.onSuccess(article);
                 } else {
