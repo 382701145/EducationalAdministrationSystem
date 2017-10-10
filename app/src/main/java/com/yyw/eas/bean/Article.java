@@ -6,7 +6,7 @@ import java.util.List;
 public class Article {
 
     private String total;
-    private List<Rows> rowsList;
+    private List<Rows> rows;
 
     public String getTotal() {
         return total;
@@ -16,12 +16,12 @@ public class Article {
         this.total = total;
     }
 
-    public List<Rows> getRowsList() {
-        return rowsList;
+    public List<Rows> getRows() {
+        return rows;
     }
 
-    public void setRowsList(List<Rows> rowsList) {
-        this.rowsList = rowsList;
+    public void setRows(List<Rows> rows) {
+        this.rows = rows;
     }
 
     public static class Rows {

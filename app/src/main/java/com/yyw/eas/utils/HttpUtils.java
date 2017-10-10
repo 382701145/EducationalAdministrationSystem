@@ -62,7 +62,9 @@ public class HttpUtils {
             Document document = Jsoup.parse(response.body());
             Element body = document.body();
             Elements elementsByClass = body.getElementsByClass("username");
-            return elementsByClass.get(0).text();
+            if (elementsByClass.size() > 0) {
+                return elementsByClass.get(0).text();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,6 +73,7 @@ public class HttpUtils {
 
     /**
      * 获取学校通知接口
+     *
      * @param cookiesMap
      * @param index
      * @return

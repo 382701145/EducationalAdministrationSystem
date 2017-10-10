@@ -36,8 +36,10 @@ public class SchoolNoticeActivity extends Activity implements ISchoolNoticeView 
     @Override
     public void onLoginSuccess(Article article) {
 
-        LogUtils.d("-----"+article.getRowsList().size());
 
+        if (article != null) {
+            LogUtils.d("size:" + article.getRows().size());
+        }
     }
 
     @Override
