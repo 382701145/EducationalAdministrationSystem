@@ -16,8 +16,6 @@ import com.yyw.eas.utils.LogUtils;
 
 import org.jsoup.Connection.Response;
 
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

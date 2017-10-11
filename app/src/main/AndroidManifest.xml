@@ -32,7 +32,8 @@
             android:theme="@android:style/Theme.Light.NoTitleBar" />
         <activity android:name=".view.CoursePraiseActivity" />
         <activity android:name=".view.TeacherPraiseActivity" />
-        <activity android:name=".view.SchoolNoticeActivity" />
+        <activity android:name=".view.SchoolNoticeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

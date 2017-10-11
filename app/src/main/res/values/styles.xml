@@ -15,4 +15,10 @@
         <item name="DialogSpotCount">5</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <!-- 使用ToolBar需要设置的样式 -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
