@@ -49,7 +49,7 @@ public class SchoolNoticeModel implements ISchoolNoticeModel {
 //                String body = "{\"total\":127,\"rows\":[{\"A_ID\":223,\"A_Cat\":37,\"A_Title\":\"关于使用学生管理系统的通知1\",\"A_TitleSub\":\"编码规则\",\"A_Photo\":\"\",\"A_Content\":\"学生管理系统中，部分基础数据需要按一定的编码规则统一编码，现规定编码规则下\",\"A_DateTime\":\"11111111\",\"A_Auther\":\"mrliu\",\"A_Editor\":\"mrliu\",\"A_KeyCode\":\"11111\",\"A_Hits\":157,\"A_BeginTime\":\"12345\",\"A_EndTime\":\"321\",\"A_OnTop\":false,\"A_Deleted\":false,\"A_IssueTo\":\"022222\",\"A_HomePage\":true,\"A_Group\":\"802\",\"A_Reader\":\",glytz,\",\"A_Passed\":true,\"A_Elite\":false},{\"A_ID\":223,\"A_Cat\":37,\"A_Title\":\"关于使用学生管理系统的通知1\",\"A_TitleSub\":\"编码规则\",\"A_Photo\":\"\",\"A_Content\":\"学生管理系统中，部分基础数据需要按一定的编码规则统一编码，现规定编码规则下\",\"A_DateTime\":\"11111111\",\"A_Auther\":\"mrliu\",\"A_Editor\":\"mrliu\",\"A_KeyCode\":\"11111\",\"A_Hits\":157,\"A_BeginTime\":\"12345\",\"A_EndTime\":\"321\",\"A_OnTop\":false,\"A_Deleted\":false,\"A_IssueTo\":\"022222\",\"A_HomePage\":true,\"A_Group\":\"802\",\"A_Reader\":\",glytz,\",\"A_Passed\":true,\"A_Elite\":false}]}";
                 if (!body.contains(context.getResources().getString(R.string.login_educational_administration_system))) {
                     // TODO 获取成功,保存到本地
-                    LogUtils.d(body);
+//                    LogUtils.d(body);
                     Article article = gson.fromJson(body, Article.class);
                     if (article != null) {
                         onLoadCallback.onSuccess(article);
