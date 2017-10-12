@@ -30,10 +30,15 @@
         <activity
             android:name=".view.MainActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
-        <activity android:name=".view.CoursePraiseActivity" />
-        <activity android:name=".view.TeacherPraiseActivity" />
-        <activity android:name=".view.SchoolNoticeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".view.CoursePraiseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.TeacherPraiseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.SchoolNoticeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

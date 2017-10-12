@@ -14,4 +14,11 @@
     <string name="school_notice">学校通知</string>
     <string name="hello">你好!</string>
     <string name="login_educational_administration_system">登录教务管理系统</string>
+
+    <string name="header_hint_refresh_normal">下拉刷新</string>
+    <string name="header_hint_refresh_ready">松开刷新</string>
+    <string name="header_hint_refresh_loading">正在刷新&#8230;</string>
+    <string name="header_hint_refresh_time">时间：</string>
+    <string name="footer_hint_load_normal">加载更多</string>
+    <string name="footer_hint_load_ready">松开加载更多</string>
 </resources>

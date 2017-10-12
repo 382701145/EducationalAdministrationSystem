@@ -19,6 +19,7 @@ import com.yyw.eas.utils.LogUtils;
 import com.yyw.eas.widget.load.SpotsDialog;
 import com.yyw.eas.widget.pulltofresh.XListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SchoolNoticeActivity extends AppCompatActivity implements ISchoolNoticeView, XListView.IXListViewListener {
@@ -27,13 +28,15 @@ public class SchoolNoticeActivity extends AppCompatActivity implements ISchoolNo
     private int defaultIndex = 1;
     private AlertDialog loadDialog;
     private XListView listView;
+    private SchoolNoticeAdapter schoolNoticeAdapter;
+    private List<Article.Rows> rows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_notice);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_school_notice);
         setTitle(getResources().getString(R.string.school_notice));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -44,6 +47,8 @@ public class SchoolNoticeActivity extends AppCompatActivity implements ISchoolNo
         listView.setAutoLoadEnable(true);
         listView.setXListViewListener(this);
         listView.setRefreshTime(DateUtils.getTime());
+
+        rows = new ArrayList<>();
 
         loadDialog = new SpotsDialog(this);
         schoolNoticePresenter = new SchoolNoticePresenter(this);
@@ -64,9 +69,13 @@ public class SchoolNoticeActivity extends AppCompatActivity implements ISchoolNo
     public void onLoginSuccess(Article article) {
         if (article != null) {
             onLoad();
-            List<Article.Rows> rows = article.getRows();
-            SchoolNoticeAdapter schoolNoticeAdapter = new SchoolNoticeAdapter(this, rows);
-            listView.setAdapter(schoolNoticeAdapter);
+            rows.addAll(article.getRows());
+            if (schoolNoticeAdapter == null) {
+                schoolNoticeAdapter = new SchoolNoticeAdapter(this, rows);
+                listView.setAdapter(schoolNoticeAdapter);
+            } else {
+                schoolNoticeAdapter.notifyDataSetChanged();
+            }
         }
     }
 
@@ -91,11 +100,14 @@ public class SchoolNoticeActivity extends AppCompatActivity implements ISchoolNo
 
     @Override
     public void onRefresh() {
+        rows.clear();
+        defaultIndex = 1;
         schoolNoticePresenter.getSchoolNotice(defaultIndex);
     }
 
     @Override
     public void onLoadMore() {
+        defaultIndex++;
         schoolNoticePresenter.getSchoolNotice(defaultIndex);
     }
 

@@ -7,6 +7,17 @@ public interface Constant {
         public static String SP_FILE_NAME = "eas";
     }
 
+    class CoursePraise{
+        static String URL = "http://glxt.juti.cn/new/Eval/Thumbsup/GetUnitEval";
+        static String COURSE_URL = "http://glxt.juti.cn/new/Eval/Thumbsup/zTreeData";
+        static String COURSE_URL_ID = "id";
+        static String COURSE_URL_NAME = "name";
+        static String COURSE_URL_PID = "pId";
+        static String COURSE_URL_LEVEL = "level";
+        static String COURSE_URL_OTHER_PARAM = "otherParam";
+        static String COURSE_URL_ = "_";
+    }
+
     class SchoolNotice{
         static String URL = "http://glxt.juti.cn/new/Basic/Default/GetArticleList";
         static String PARAM_PAGE_INDEX = "_PageIndex";
