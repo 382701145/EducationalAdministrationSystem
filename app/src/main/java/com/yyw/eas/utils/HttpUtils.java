@@ -103,7 +103,7 @@ public class HttpUtils {
         return null;
     }
 
-    public static Response getCourseID(Map<String, String> cookiesMap) {
+    public static Response getCourseId(Map<String, String> cookiesMap) {
 
         try {
             Connection con = Jsoup.connect(Constant.CoursePraise.COURSE_URL);
@@ -115,9 +115,6 @@ public class HttpUtils {
             }
 
             return con.method(Connection.Method.GET)
-                    .data(Constant.CoursePraise.COURSE_URL_ID, "2016-2017^2")
-                    .data(Constant.CoursePraise.COURSE_URL_NAME, "2016-2017-2")
-                    .data(Constant.CoursePraise.COURSE_URL_LEVEL, "0")
                     .data(Constant.CoursePraise.COURSE_URL_OTHER_PARAM, "zTreeAsyncTest")
                     .data(Constant.CoursePraise.COURSE_URL_, "1507812989512")
                     .timeout(10000)

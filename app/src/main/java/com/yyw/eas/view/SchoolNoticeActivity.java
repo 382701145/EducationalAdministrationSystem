@@ -57,12 +57,17 @@ public class SchoolNoticeActivity extends AppCompatActivity implements ISchoolNo
 
     @Override
     public void showLoading() {
-        loadDialog.show();
+        if (loadDialog != null) {
+            loadDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-        loadDialog.cancel();
+        if (loadDialog != null) {
+            loadDialog.cancel();
+            ((SpotsDialog) loadDialog).setEnable(false);
+        }
     }
 
     @Override

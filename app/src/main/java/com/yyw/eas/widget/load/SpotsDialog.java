@@ -17,6 +17,7 @@ public class SpotsDialog extends AlertDialog {
     private int size;
     private AnimatedView[] spots;
     private AnimatorPlayer animator;
+    private boolean enable = true;
 
     public SpotsDialog(Context context) {
         this(context, R.style.SpotsDialogDefault);
@@ -40,11 +41,22 @@ public class SpotsDialog extends AlertDialog {
         initProgress();
     }
 
-    public void setHintText(String text){
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
 
+    @Override
+    public void show() {
+        if (enable) {
+            super.show();
+        }
+    }
 
-
-
+    @Override
+    public void cancel() {
+        if (enable) {
+            super.cancel();
+        }
     }
 
     @Override
