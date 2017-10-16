@@ -166,4 +166,28 @@ public class Course {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "children='" + children + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", pId='" + pId + '\'' +
+                ", target='" + target + '\'' +
+                ", url='" + url + '\'' +
+                ", icon='" + icon + '\'' +
+                ", iconClose='" + iconClose + '\'' +
+                ", iconOpen='" + iconOpen + '\'' +
+                ", iconSkin='" + iconSkin + '\'' +
+                ", checked='" + checked + '\'' +
+                ", isParent='" + isParent + '\'' +
+                ", open='" + open + '\'' +
+                ", drop='" + drop + '\'' +
+                ", IsProject='" + IsProject + '\'' +
+                ", noselect='" + noselect + '\'' +
+                ", type='" + type + '\'' +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

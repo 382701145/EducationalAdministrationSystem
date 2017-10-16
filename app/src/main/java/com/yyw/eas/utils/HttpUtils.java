@@ -103,6 +103,12 @@ public class HttpUtils {
         return null;
     }
 
+    /**
+     * 获取课程id
+     *
+     * @param cookiesMap
+     * @return
+     */
     public static Response getCourseId(Map<String, String> cookiesMap) {
 
         try {
@@ -115,6 +121,33 @@ public class HttpUtils {
             }
 
             return con.method(Connection.Method.GET)
+                    .data(Constant.CoursePraise.COURSE_URL_OTHER_PARAM, "zTreeAsyncTest")
+                    .data(Constant.CoursePraise.COURSE_URL_, "1507812989512")
+                    .timeout(10000)
+                    .execute();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Response getCourseInfo(Map<String, String> cookiesMap, String id, String name) {
+
+        try {
+            Connection con = Jsoup.connect(Constant.CoursePraise.COURSE_URL);
+            con.ignoreContentType(true);
+            Iterator<Map.Entry<String, String>> it = cookiesMap.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<String, String> en = it.next();
+                con = con.cookie(en.getKey(), en.getValue());
+            }
+
+            return con.method(Connection.Method.GET)
+                    .data("id", id)
+                    .data("name", name)
+                    .data("pId", "")
+                    .data("level", "0")
                     .data(Constant.CoursePraise.COURSE_URL_OTHER_PARAM, "zTreeAsyncTest")
                     .data(Constant.CoursePraise.COURSE_URL_, "1507812989512")
                     .timeout(10000)
