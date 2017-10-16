@@ -24,13 +24,13 @@ import java.util.Map;
 
 public class CoursePraiseModel implements ICoursePraiseModel {
 
-    private Map<String, List<Course>> courseInfoMap;
-    private List<Course> courseIdList;
+    private List<Course.CourseInfo> courseInfoList;
+    private List<Course> courseList;
 
     @Override
     public void getCourseId(Context context, OnLoadCallback onLoadCallback) {
 
-        courseInfoMap = new HashMap<>();
+        courseList = new ArrayList<>();
 
         CoursePraiseIdAsyncTask coursePraiseIdAsyncTask = new CoursePraiseIdAsyncTask(context, onLoadCallback);
         coursePraiseIdAsyncTask.execute();
@@ -63,15 +63,14 @@ public class CoursePraiseModel implements ICoursePraiseModel {
                 if (body != null) {
                     // TODO 获取成功,保存到本地
                     LogUtils.d(body);
-                    Type listType = new TypeToken<List<Course>>() {
+                    Type listType = new TypeToken<List<Course.CourseInfo>>() {
                     }.getType();
-                    courseIdList = gson.fromJson(body, listType);
+                    courseInfoList = gson.fromJson(body, listType);
                     // TODO 根据CourseId查询课程信息
-                    if (!courseIdList.isEmpty()) {
-                        for (int i = 0; i < courseIdList.size(); i++) {
-                            new CoursePraiseInfoAsyncTask(context, onLoadCallback).execute(courseIdList.get(i));
+                    if (!courseInfoList.isEmpty()) {
+                        for (int i = 0; i < courseInfoList.size(); i++) {
+                            new CoursePraiseInfoAsyncTask(context, onLoadCallback).execute(courseInfoList.get(i));
                         }
-                        onLoadCallback.onSuccess(courseIdList);
                     } else {
                         onLoadCallback.onFailed(Constant.Connect.ERROR);
                     }
@@ -81,7 +80,6 @@ public class CoursePraiseModel implements ICoursePraiseModel {
             } else {
                 onLoadCallback.onFailed(Constant.Network.Network_ERROR);
             }
-            onLoadCallback.onLoadComplete();
         }
 
         @Override
@@ -104,7 +102,7 @@ public class CoursePraiseModel implements ICoursePraiseModel {
         }
     }
 
-    private class CoursePraiseInfoAsyncTask extends AsyncTask<Course, Void, Connection.Response> {
+    private class CoursePraiseInfoAsyncTask extends AsyncTask<Course.CourseInfo, Void, Connection.Response> {
 
         private Context context;
         private OnLoadCallback onLoadCallback;
@@ -126,18 +124,28 @@ public class CoursePraiseModel implements ICoursePraiseModel {
             if (response != null) {
                 String body = response.body();
                 if (body != null) {
-                    Type listType = new TypeToken<List<Course>>() {
+                    Type listType = new TypeToken<List<Course.CourseInfo>>() {
                     }.getType();
-                    List<Course> courses = gson.fromJson(body, listType);
+                    List<Course.CourseInfo> courseInfos = gson.fromJson(body, listType);
+                    Course course = new Course();
+                    course.setSchoolYear(courseName);
+                    course.setCourseInfoList(courseInfos);
                     synchronized(locker){
-                        courseInfoMap.put(courseName, courses);
+                        courseList.add(course);
+                        if(courseList.size() == courseInfoList.size()){
+                            onLoadCallback.onSuccess(courseList);
+                            onLoadCallback.onLoadComplete();
+                        }
                     }
+                }else{
+                    onLoadCallback.onFailed(Constant.Connect.ERROR);
+                    onLoadCallback.onLoadComplete();
                 }
             }
         }
 
         @Override
-        protected Connection.Response doInBackground(Course... params) {
+        protected Connection.Response doInBackground(Course.CourseInfo... params) {
 
             String json = FileUtils.getStringFromFile(context, Constant.Response.COOKIES_FILE_NAME);
             Cookies cookies = gson.fromJson(json, Cookies.class);

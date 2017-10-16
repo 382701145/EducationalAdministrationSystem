@@ -6,12 +6,11 @@ import android.content.Context;
 import com.yyw.eas.bean.Course;
 
 import java.util.List;
-import java.util.Map;
 
 
 public interface ICoursePraiseView {
 
-    void onSuccess(Map<String, List<Course>> courseMap);
+    void onSuccess(List<Course> courseList);
 
     void onLoginFailed(int failedMessage);
 

@@ -1,6 +1,7 @@
 package com.yyw.eas.presenter;
 
 
+import com.yyw.eas.bean.Course;
 import com.yyw.eas.callback.OnLoadCallback;
 import com.yyw.eas.model.CoursePraiseModel;
 import com.yyw.eas.model.ICoursePraiseModel;
@@ -8,6 +9,7 @@ import com.yyw.eas.utils.Constant;
 import com.yyw.eas.utils.NetworkUtils;
 import com.yyw.eas.view.ICoursePraiseView;
 
+import java.util.List;
 import java.util.Map;
 
 public class CoursePraisePresenter implements ICoursePraisePresenter {
@@ -36,9 +38,9 @@ public class CoursePraisePresenter implements ICoursePraisePresenter {
                 @Override
                 public <T> void onSuccess(T t) {
 
-                    if (t instanceof Map) {
-                        Map map = (Map) t;
-                        coursePraiseView.onSuccess(map);
+                    if (t instanceof List) {
+                        List<Course> list = (List<Course>) t;
+                        coursePraiseView.onSuccess(list);
                     }
                 }
 
